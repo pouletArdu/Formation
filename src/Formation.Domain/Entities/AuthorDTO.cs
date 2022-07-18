@@ -12,10 +12,15 @@ namespace Formation.Domain.Entities
 
         public string FirstName { get; set; }
 
-        public DateOnly Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
-        public Gender gender { get; set; }
+        public Gender Gender { get; set; }
 
         public ICollection<BookDTO> Books { get; set; }
+
+        public override string ToString()
+        {
+            return $"{(Gender == Gender.Male ? "M" : "Mme")} {FirstName} {LastName}";
+        }
     }
 }
