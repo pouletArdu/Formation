@@ -14,5 +14,9 @@ namespace Formation.Domain.Entities
         public Gender Gender { get; set; }
         public ICollection<BookDTO> Books { get; set; }
 
+        public override string ToString()
+        {
+            return $"{(Gender == Gender.Male ? "Mr" : "Mdm")} {FirstName} {LastName}";
+        }
     }
 }
