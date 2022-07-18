@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Formation.Domain
+namespace Formation.Domain.Enums
 {
-    public class Author
+    public enum Gender
     {
-
+        Male,
+        Female
     }
 }
