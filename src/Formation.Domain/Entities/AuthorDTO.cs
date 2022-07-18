@@ -12,7 +12,7 @@ namespace Formation.Domain.Entities
         public string LastName { get; set; } 
         public DateOnly Birthday { get; set; }
         public Gender Gender { get; set; }
-        public BookDTO[] Books { get; set; }
+        public ICollection<BookDTO> Books { get; set; }
 
     }
 }
