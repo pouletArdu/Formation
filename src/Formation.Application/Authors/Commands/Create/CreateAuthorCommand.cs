@@ -17,9 +17,10 @@
         private readonly AuthorRepository _repository;
         private readonly IMapper _mapper;
 
-        public CreateCommandHandler(AuthorRepository repository)
+        public CreateCommandHandler(AuthorRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<int> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
