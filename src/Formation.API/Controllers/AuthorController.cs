@@ -2,6 +2,7 @@
 using Formation.Application.Common.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Formation.Application.Authors.Queries.GetOne;
 
 namespace Formation.API.Controllers;
 
@@ -17,13 +18,22 @@ public class AuthorController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Add([FromBody] CreateAuthorCommand request)
     {
-        return await Send(request);
+        return await SendAsync(request);
     }
 
-    private async Task<IActionResult> Send<T>(IRequest<T> request)
+    [HttpGet("id")]
+    public async Task<IActionResult> GetOneAuthorById(int id)
+    {
+        return await SendAsync(new GetOneAuthorQuery
+        {
+            Id = id,
+        });
+    }
+
+    private async Task<IActionResult> SendAsync<T>(IRequest<T> request)
     {
         try
         {

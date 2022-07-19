@@ -21,7 +21,7 @@ public class Testing
 
         services.AddLogging();
         services.AddApplication();
-        services.AddScoped<AuthorRepository, AuthorRepositoryMock>();
+        services.AddScoped<IAuthorRepository, AuthorRepositoryMock>();
         _scopeFactory = services.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>();
     }
 

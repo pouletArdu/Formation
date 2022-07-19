@@ -2,7 +2,7 @@
 
 namespace Application.Validation.Tests.Drivers;
 
-public class AuthorRepositoryMock : AuthorRepository
+public class AuthorRepositoryMock : IAuthorRepository
 {
     public static List<AuthorDTO> Authors = new();
 
@@ -24,7 +24,7 @@ public class AuthorRepositoryMock : AuthorRepository
         Authors.AddRange(authors);
     }
 
-    public async Task<AuthorDTO> GetOne(int id)
+    public async Task<AuthorDTO> GetOneAuthorById(int id)
     {
         await Task.Yield();
         return Authors.FirstOrDefault(a => a.Id == id);

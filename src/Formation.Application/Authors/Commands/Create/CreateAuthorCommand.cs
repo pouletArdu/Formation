@@ -9,15 +9,14 @@
         public DateTime Birthday { get; set; }
 
         public Gender Gender { get; set; }
-
     }
 
     public class CreateCommandHandler : IRequestHandler<CreateAuthorCommand, int>
     {
-        private readonly AuthorRepository _repository;
+        private readonly IAuthorRepository _repository;
         private readonly IMapper _mapper;
 
-        public CreateCommandHandler(AuthorRepository repository, IMapper mapper)
+        public CreateCommandHandler(IAuthorRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

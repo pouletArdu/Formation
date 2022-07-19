@@ -4,6 +4,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<AuthorDTO, Author>();
+        CreateMap<AuthorDTO, Author>()
+            .ReverseMap();
     }
 }

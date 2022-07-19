@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Authors\Commands\Delete\" />
     <Folder Include="Authors\Commands\Update\" />
-    <Folder Include="Authors\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

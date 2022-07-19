@@ -15,7 +15,7 @@ public static class DependencyInjection
         services.AddDbContext<FormationDbContext>(options => options
             .UseSqlite(configuration.GetSection("Sqlite").Value));
         services.AddAutoMapper(assembly);
-        services.AddScoped<AuthorRepository, AuthorRepositoryImp>();
+        services.AddScoped<IAuthorRepository, AuthorRepositoryImp>();
 
         return services;
     }

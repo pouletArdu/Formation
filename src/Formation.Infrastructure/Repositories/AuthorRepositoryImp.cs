@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Formation.Infrastructure.Repositories
 {
-    public class AuthorRepositoryImp : AuthorRepository
+    public class AuthorRepositoryImp : IAuthorRepository
     {
         private readonly FormationDbContext _context;
         private readonly IMapper _mapper;
@@ -25,6 +25,13 @@ namespace Formation.Infrastructure.Repositories
             await _context.SaveChangesAsync();
 
             return entity.Id;
+        }
+
+        public async Task<AuthorDTO> GetOneAuthorById(int id)
+        {
+            var entity = await _context.FindAsync<Author>(id).ConfigureAwait(false); ;
+            var dto = _mapper.Map<AuthorDTO>(entity);
+            return dto;
         }
     }
 }
