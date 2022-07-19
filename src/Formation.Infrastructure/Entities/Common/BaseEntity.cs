@@ -1,4 +1,4 @@
-﻿namespace Formation.Domain.Entities.Common;
+﻿namespace Formation.Infrastructure.Entities.Common;
 
 public class BaseEntity
 {

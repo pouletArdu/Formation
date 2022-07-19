@@ -22,6 +22,7 @@ public class CreateAuthorCommandHandler : IRequestHandler<CreateAuthorCommand, i
     public async Task<int> Handle(CreateAuthorCommand command, CancellationToken cancellationToken)
     {
         var dto = _mapper.Map<AuthorDTO>(command);
+
         return await _repository.Add(dto);
     }
 }

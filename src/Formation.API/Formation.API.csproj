@@ -4,10 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>da0e9599-8695-4203-9321-ee02c12e54c6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Formation.Application\Formation.Application.csproj" />
+    <ProjectReference Include="..\Formation.Infrastructure\Formation.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
