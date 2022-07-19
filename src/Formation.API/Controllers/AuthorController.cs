@@ -1,4 +1,5 @@
 ﻿using Formation.Application.Authors.Commands.Create;
+using Formation.Application.Common.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,8 +18,28 @@ public class AuthorController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Add([FromBody] CreateAuthorCommand request)
+    public async Task<IActionResult> Add([FromBody] CreateAuthorCommand request)
     {
-        return await _mediator.Send(request);
+        return await Send(request);
+    }
+
+    private async Task<IActionResult> Send<T>(IRequest<T> request)
+    {
+        try
+        {
+            return Ok(await _mediator.Send(request));
+        }
+        catch (ValidationException ex)
+        {
+            return BadRequest(ex.Errors.Select(x => x.Value));
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
     }
 }
