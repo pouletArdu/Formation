@@ -13,7 +13,7 @@ public class CreateAuthorCommand : IRequest<int>
     public string LastName { get; set; } = null;
     public string FirstName { get; set; } = null;
 
-    public DateTime BirthDate { get; set; }
+    public DateTime BirthDay { get; set; }
     public Gender Gender { get; set; }    
 }
 

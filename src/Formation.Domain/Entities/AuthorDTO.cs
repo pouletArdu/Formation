@@ -8,7 +8,7 @@ public class AuthorDTO : BaseEntity
 
     public Gender Gender { get; set; }
 
-    public DateTime BirthDate { get; set; }
+    public DateTime BirthDay { get; set; }
 
     public ICollection<BookDTO> Books { get; set; }
 }

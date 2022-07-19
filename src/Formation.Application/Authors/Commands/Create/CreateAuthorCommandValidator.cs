@@ -18,7 +18,7 @@ namespace Formation.Application.Authors.Commands.Create
                 .NotNull().WithMessage("Last name could not be null")
                 .NotEmpty().WithMessage("Last name could not be null");
 
-            RuleFor(a => a.BirthDate)
+            RuleFor(a => a.BirthDay)
                 .LessThan(DateTime.Now);
         }
     }
