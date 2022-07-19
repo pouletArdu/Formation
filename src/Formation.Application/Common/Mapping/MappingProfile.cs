@@ -6,7 +6,8 @@ namespace Formation.Application.Common.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<CreateAuthorCommand, AuthorDTO>();
+            CreateMap<CreateAuthorCommand, AuthorDTO>()
+                .ReverseMap();
         }
     }
 }
