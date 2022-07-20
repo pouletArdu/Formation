@@ -38,11 +38,12 @@ namespace Application.Validation.Tests.StepDefinitions
             _createBookCommand.Description = description;
         }
 
-        [Given(@"his author id is ""([^""]*)""")]
-        public void GivenHisAuthorIdIs(string authorId)
+        [Given(@"his author id is (.*)")]
+        public void GivenHisAuthorIdIs(int authorId)
         {
-            _createBookCommand.AuthorId = int.Parse(authorId);
+            _createBookCommand.AuthorId = authorId;
         }
+
 
         [Given(@"his publication date is ""([^""]*)""")]
         public void GivenHisPublicationDateIs(string publicationDate)
