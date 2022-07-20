@@ -37,6 +37,12 @@ namespace Application.Validation.Tests.StepDefinitions
             _createBookCommand.NumberOfPage = numberOfPage;
         }
 
+        [Given(@"his author id is (.*)")]
+        public void GivenHisAuthorIdIs(int authorId)
+        {
+            _createBookCommand.AuthorId = authorId;
+        }
+
 
         [When(@"I ask to add the book")]
         public async Task WhenIAskToAddTheBookAsync()
@@ -67,5 +73,12 @@ namespace Application.Validation.Tests.StepDefinitions
         {
             _bookException.Should().BeOfType<ValidationException>();
         }
+
+        [Given(@"there is an author with Id (.*)")]
+        public void GivenThereIsAnAuthorWithId(int id)
+        {
+            AuthorRepositoryMock.AddAuthors(new List<AuthorDTO> { new AuthorDTO { Id = id } });
+        }
+
     }
 }

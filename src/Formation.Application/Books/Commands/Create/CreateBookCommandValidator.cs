@@ -16,6 +16,9 @@ namespace Formation.Application.Books.Commands.Create
 
             RuleFor(a => a.NumberOfPage)
                 .GreaterThan(0);
+
+            RuleFor(a => a.AuthorId)
+                .GreaterThan(0).WithMessage("Author could not be null");
         }
     }
 }

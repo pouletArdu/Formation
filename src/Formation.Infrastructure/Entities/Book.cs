@@ -6,7 +6,7 @@
 
         public string Description { get; set; }
 
-        public AuthorDTO Author { get; set; }
+        public Author Author { get; set; }
 
         public DateTime PublicationDate { get; set; }
 

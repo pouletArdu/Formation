@@ -19,7 +19,9 @@ namespace Formation.Infrastructure.Repositories
 
         public async Task<int> Add(BookDTO dto)
         {
+            var author = _context.Authors.FindAsync(dto.Author.Id).Result;
             var entity = _mapper.Map<Book>(dto);
+            entity.Author = _mapper.Map<Author>(author);
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
 

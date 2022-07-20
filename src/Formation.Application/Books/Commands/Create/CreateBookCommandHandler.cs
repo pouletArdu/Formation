@@ -14,6 +14,7 @@
         public async Task<int> Handle(CreateBookCommand command, CancellationToken cancellationToken)
         {
             var dto = _mapper.Map<BookDTO>(command);
+            
 
             return await _repository.Add(dto);
         }
