@@ -11,9 +11,7 @@ namespace Formation.Application.Common.Mapping
 
             CreateMap<CreateBookCommand, BookDTO>()
                 .ForMember(
-                dest => dest.Author,
-                act => act.MapFrom(org => new AuthorDTO { Id = org.AuthorId })
-                );
+                dest=> dest.Author, act=> act.MapFrom(org=> new AuthorDTO { Id= org.AuthorId}));
         }
     }
 }

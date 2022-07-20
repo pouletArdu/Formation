@@ -4,11 +4,15 @@
     {
         public MappingProfile()
         {
-            CreateMap<AuthorDTO, Author>()
-                .ReverseMap();
-
             CreateMap<BookDTO, Book>()
-                //.IncludeMembers()
+                .ReverseMap()
+                .IncludeAllDerived()                
+                .ForMember(dest => dest.Author, act => act.MapFrom(org => new AuthorDTO
+                {
+                    FirstName = org.Author.FirstName,
+                    LastName = org.Author.LastName
+                }));
+            CreateMap<AuthorDTO, Author>()
                 .ReverseMap();
         }
     }

@@ -13,11 +13,11 @@
 
         public async Task<int> Add(BookDTO dto)
         {
-            var author = _context.Authors.FindAsync(dto.Author.Id);
+            var author = await _context.Authors.FindAsync(dto.Author.Id);
 
             var entity = _mapper.Map<Book>(dto);
 
-            entity.Author = _mapper.Map<Author>(author);
+            entity.Author = author; // _mapper.Map<Author>(author);
 
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -28,7 +28,16 @@
         public async Task<BookDTO> Get(int id)
         {
             //throw new NotImplementedException();
-            var book = await _context.Books.FindAsync(id);
+            //var book = await _context.Books.FindAsync(id);
+            //var bookDTO = _mapper.Map<BookDTO>(book);
+
+            var book = await _context
+            .Books
+            .Include(a => a.Author)
+            .Where(b => b.Id == id)
+            .FirstOrDefaultAsync();
+            ;
+
             var bookDTO = _mapper.Map<BookDTO>(book);
 
             return bookDTO;
