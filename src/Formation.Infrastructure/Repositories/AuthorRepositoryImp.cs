@@ -25,5 +25,13 @@ namespace Formation.Infrastructure.Repositories
 
             return entity.Id;
         }
+
+        public async Task<AuthorDTO> Get(int id)
+        {
+            var author = await _context.Authors.FindAsync(id);
+            var authorDTO = _mapper.Map<AuthorDTO>(author);
+
+            return authorDTO;
+        }
     }
 }

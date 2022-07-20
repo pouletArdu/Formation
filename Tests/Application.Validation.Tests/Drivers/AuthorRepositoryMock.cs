@@ -22,5 +22,11 @@ namespace Application.Validation.Tests.Drivers
         {
             Authors.AddRange(authors);
         }
+
+        public async Task<AuthorDTO> Get(int id)
+        {
+            await Task.Yield();
+            return Authors.First(x => x.Id == id);
+        }
     }
 }
