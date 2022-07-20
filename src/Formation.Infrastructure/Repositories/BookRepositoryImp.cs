@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Formation.Infrastructure.Repositories
+﻿namespace Formation.Infrastructure.Repositories
 {
     public class BookRepositoryImp : BookRepository
     {
@@ -19,17 +13,15 @@ namespace Formation.Infrastructure.Repositories
 
         public async Task<int> Add(BookDTO dto)
         {
-            //var entity = new Author
-            //{
-            //    BirthDate = dto.BirthDate,
-            //    FirstName = dto.FirstName,
-            //    LastName = dto.LastName
-            //    //...
-            //};
+            var author = _context.Authors.FindAsync(dto.Author.Id);
 
             var entity = _mapper.Map<Book>(dto);
+
+            entity.Author = _mapper.Map<Author>(author);
+
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
+
             return entity.Id;
         }
 

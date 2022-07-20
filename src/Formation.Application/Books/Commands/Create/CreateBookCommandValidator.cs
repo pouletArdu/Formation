@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Formation.Application.Books.Commands.Create
+﻿namespace Formation.Application.Books.Commands.Create
 {
     public class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
     {
@@ -18,7 +12,7 @@ namespace Formation.Application.Books.Commands.Create
                 .NotNull().WithMessage("Description can not be null")
                 .NotEmpty().WithMessage("Description can not be null");
 
-            RuleFor(a => a.Author)
+            RuleFor(a => a.AuthorId)
                 .NotNull().WithMessage("Author can not be null")
                 .NotEmpty().WithMessage("Author can not be null");
         }

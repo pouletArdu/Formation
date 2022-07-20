@@ -1,11 +1,6 @@
-﻿using System;
-using TechTalk.SpecFlow;
-using Formation.Domain.Entities;
-using Formation.Domain.Enums;
+﻿using Application.Validation.Tests.Drivers;
 using Formation.Application.Books.Commands.Create;
-using Application.Validation.Tests.Drivers;
-using Formation.Application.Common.Exceptions;
-using Formation.Application.Books.Queries.GetOne;
+using Formation.Domain.Entities;
 
 namespace Application.Validation.Tests.StepDefinitions
 {
@@ -14,8 +9,8 @@ namespace Application.Validation.Tests.StepDefinitions
     {
         private CreateBookCommand _createBookCommand = null!;
         private int _bookResultId;
-        private BookDTO _bookResult;
-        private BookDTO _bookExpected;
+        private readonly BookDTO _bookResult;
+        private readonly BookDTO _bookExpected;
         private Exception _exception;
 
         [AfterTestRun]
@@ -42,11 +37,18 @@ namespace Application.Validation.Tests.StepDefinitions
             _createBookCommand.Description = description;
         }
 
-        [Given(@"his author is ""([^""]*)""")]
-        public void GivenHisAuthorIs(string author)
+        [Given(@"there is an author with Id (.*)")]
+        public void GivenThereIsAnAuthorWithId(int id)
         {
-            _createBookCommand.Author = author;
+            AuthorRepositoryMock.AddAuthors(new List<AuthorDTO> { new AuthorDTO { Id = id } });
         }
+
+        [Given(@"his author id is (.*)")]
+        public void GivenHisAuthorIdIs(int id)
+        {
+            _createBookCommand.AuthorId = id;
+        }
+
 
         [Given(@"his publicationDate is ""([^""]*)""")]
         public void GivenHisPublicationDateIs(string publicationDate)

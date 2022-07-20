@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Formation.Application.Authors.Commands.Create;
+﻿using Formation.Application.Authors.Commands.Create;
 using Formation.Application.Books.Commands.Create;
 
 namespace Formation.Application.Common.Mapping
@@ -14,7 +9,11 @@ namespace Formation.Application.Common.Mapping
         {
             CreateMap<CreateAuthorCommand, AuthorDTO>();
 
-            CreateMap<CreateBookCommand, BookDTO>();
+            CreateMap<CreateBookCommand, BookDTO>()
+                .ForMember(
+                dest => dest.Author,
+                act => act.MapFrom(org => new AuthorDTO { Id = org.AuthorId })
+                );
         }
     }
 }
