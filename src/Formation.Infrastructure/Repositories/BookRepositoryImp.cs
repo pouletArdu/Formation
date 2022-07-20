@@ -13,9 +13,9 @@
 
         public async Task<int> Add(BookDTO dto)
         {
-            var author = _context.Authors.FindAsync(dto.Author.Id).Result;
+            var author = await _context.Authors.FindAsync(dto.Author.Id);
             var entity = _mapper.Map<Book>(dto);
-            entity.Author = _mapper.Map<Author>(author);
+            entity.Author = author;
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
 
@@ -24,10 +24,8 @@
 
         public async Task<BookDTO> Get(int id)
         {
-            var author = _context.Authors.FindAsync(id).Result;
-            var book = _context.Books.FindAsync(id).Result;
+            var book = _context.Books.Include(a => a.Author).Where(b => b.Id == id).FirstOrDefaultAsync().Result;
             var bookDTO = _mapper.Map<BookDTO>(book);
-            bookDTO.Author = _mapper.Map<AuthorDTO>(author);
 
             return bookDTO;
         }
