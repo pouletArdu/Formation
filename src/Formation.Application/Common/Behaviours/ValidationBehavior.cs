@@ -1,4 +1,6 @@
-﻿namespace Formation.Application.Common.Behaviours;
+﻿using Formation.Application.Common.Exceptions;
+
+namespace Formation.Application.Common.Behaviours;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
      where TRequest : IRequest<TResponse>
@@ -26,7 +28,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
                 .ToList();
 
             if (failures.Any())
-                throw new ValidationException(failures);
+                throw new Exceptions.ValidationException(failures);
         }
         return await next();
     }
