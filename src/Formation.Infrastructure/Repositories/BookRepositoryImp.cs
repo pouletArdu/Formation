@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Formation.Infrastructure.Repositories
 {
-    public class AuthorRepositoryImp : AuthorRepository
+    public class BookRepositoryImp : BookRepository
     {
         private readonly FormationDbContext _context;
         private readonly IMapper _mapper;
 
-        public AuthorRepositoryImp(FormationDbContext context, IMapper mapper)
+        public BookRepositoryImp(FormationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<int> Add(AuthorDTO dto)
+        public async Task<int> Add(BookDTO dto)
         {
             //var entity = new Author
             //{
@@ -27,19 +27,19 @@ namespace Formation.Infrastructure.Repositories
             //    //...
             //};
 
-            var entity = _mapper.Map<Author>(dto);
+            var entity = _mapper.Map<Book>(dto);
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity.Id;
         }
 
-        public async Task<AuthorDTO> Get(int id)
+        public async Task<BookDTO> Get(int id)
         {
             //throw new NotImplementedException();
-            var author = await _context.Authors.FindAsync(id);
-            var authorDTO = _mapper.Map<AuthorDTO>(author);
+            var book = await _context.Books.FindAsync(id);
+            var bookDTO = _mapper.Map<BookDTO>(book);
 
-            return authorDTO;
+            return bookDTO;
         }
     }
 }

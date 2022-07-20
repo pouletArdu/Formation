@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Formation.Application.Repositories
 {
-    public interface AuthorRepository
+    public interface BookRepository
     {
-        Task<int> Add(AuthorDTO dto);
+        Task<int> Add(BookDTO dto);
 
-        Task<AuthorDTO> Get(int id);
+        Task<BookDTO> Get(int id);
     }
 }

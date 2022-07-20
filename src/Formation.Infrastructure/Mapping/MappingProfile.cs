@@ -12,6 +12,9 @@ namespace Formation.Infrastructure.Mapping
         {
             CreateMap<AuthorDTO,Author>()
                 .ReverseMap();
+
+            CreateMap<BookDTO, Book>()
+                .ReverseMap();
         }
     }
 }

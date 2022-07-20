@@ -180,12 +180,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I want to get an author by his Id")]
+        [NUnit.Framework.CategoryAttribute("GetAuthor")]
         public virtual void IWantToGetAnAuthorByHisId()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "GetAuthor"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to get an author by his Id", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 24
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -247,13 +249,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "99",
                             "1983/04/01",
                             "Male"});
-#line 25
+#line 26
    testRunner.Given("there are authors :", ((string)(null)), table1, "Given ");
 #line hidden
-#line 33
+#line 34
    testRunner.When("I ask to get the author with id 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 34
+#line 35
    testRunner.Then("I get the expected author", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -27,7 +27,7 @@ namespace Application.Validation.Tests
 
             services.AddLogging();
             services.AddApplication();
-            //services.AddSingleton<BookRepository, BookRepositoryMock>();
+            services.AddScoped<BookRepository, BookRepositoryMock>();
             services.AddScoped<AuthorRepository, AuthorRepositoryMock>();
             _scopeFactory = services.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>();
         }

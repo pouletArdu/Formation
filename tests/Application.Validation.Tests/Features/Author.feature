@@ -21,6 +21,7 @@ Scenario: I want to add an author without firstName
 	When I ask to add the author
 	Then A ValidatationException is raised
 
+@GetAuthor
 Scenario: I want to get an author by his Id
    Given there are authors :
        | Id | FirstName | LastName | BirthDay   | Gender |
@@ -32,4 +33,6 @@ Scenario: I want to get an author by his Id
 	   |  6 |   99      |    99    | 1983/04/01 |   Male |
    When I ask to get the author with id 5
    Then I get the expected author
+
+
 
