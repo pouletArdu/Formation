@@ -21,4 +21,30 @@ public class BookRepositoryImp : IBookRepository
 
         return entity.Id;
     }
+
+    public async Task<BookDTO> GetOneBookById(int id)
+    {
+        var book = await _context
+                .Books
+                .Include(x => x.Author)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+        var dto = _mapper.Map<BookDTO>(book);
+        return dto;
+    }
+
+    public async Task<IEnumerable<BookDTO>> GetAllBook()
+    {
+        var entity = await _context.Books.ToListAsync();
+
+        var dto = new List<BookDTO>();
+
+        foreach (var author in entity)
+        {
+            dto.Add(_mapper.Map<BookDTO>(author));
+        }
+
+        return dto;
+    }
 }

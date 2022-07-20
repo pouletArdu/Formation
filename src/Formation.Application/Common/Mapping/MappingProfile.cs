@@ -7,11 +7,15 @@ namespace Formation.Application.Common.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<CreateAuthorCommand, AuthorDTO>()
-                .ReverseMap();
+            CreateMap<CreateAuthorCommand, AuthorDTO>();
 
             CreateMap<CreateBookCommand, BookDTO>()
-                .ReverseMap();
+                .ForMember(
+                dest => dest.Author, 
+                act => act.MapFrom(org => new AuthorDTO
+                {
+                    Id = org.AuthorId
+                }));
         }
     }
 }

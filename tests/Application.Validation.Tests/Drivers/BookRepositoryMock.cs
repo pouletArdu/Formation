@@ -23,4 +23,10 @@ public class BookRepositoryMock : IBookRepository
     {
         Books.AddRange(books);
     }
+
+    public async Task<BookDTO> GetOneBookById(int id)
+    {
+        await Task.Yield();
+        return Books.FirstOrDefault(b => b.Id == id);
+    }
 }

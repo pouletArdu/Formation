@@ -20,6 +20,7 @@ namespace Formation.Infrastructure.Repositories
         public async Task<int> Add(AuthorDTO dto)
         {
             var entity = _mapper.Map<Author>(dto);
+            
 
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -27,9 +28,29 @@ namespace Formation.Infrastructure.Repositories
             return entity.Id;
         }
 
+        public async Task<IEnumerable<AuthorDTO>> GetAllAuthor()
+        {
+            var entity = await _context.Authors.ToListAsync();
+
+            var dto = new List<AuthorDTO>();
+
+            foreach (var author in entity)
+            {
+                dto.Add(_mapper.Map<AuthorDTO>(author));
+            }
+
+            return dto;
+        }
+
         public async Task<AuthorDTO> GetOneAuthorById(int id)
         {
-            var entity = await _context.FindAsync<Author>(id).ConfigureAwait(false); ;
+            var entity = await _context
+                .Authors
+                .Include(x => x.Books)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+
             var dto = _mapper.Map<AuthorDTO>(entity);
             return dto;
         }

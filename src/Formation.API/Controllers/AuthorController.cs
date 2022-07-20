@@ -3,6 +3,7 @@ using Formation.Application.Common.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Formation.Application.Authors.Queries.GetOne;
+using Formation.Application.Authors.Queries.GetAll;
 
 namespace Formation.API.Controllers;
 
@@ -31,6 +32,13 @@ public class AuthorController : ControllerBase
         {
             Id = id,
         });
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllAuthorById()
+    {
+        return await SendAsync(new GetAllAuthorQuery());
     }
 
     private async Task<IActionResult> SendAsync<T>(IRequest<T> request)

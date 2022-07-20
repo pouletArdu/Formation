@@ -38,6 +38,13 @@ namespace Application.Validation.Tests.StepDefinitions
             _createBookCommand.Description = description;
         }
 
+        [Given(@"there is an author with id (.*)")]
+        public void GivenThereIsAnAuthorWithId(int authorId)
+        {
+            AuthorRepositoryMock.AddAuthors(new List<AuthorDTO> { new AuthorDTO { Id = authorId } });
+        }
+
+
         [Given(@"his author id is (.*)")]
         public void GivenHisAuthorIdIs(int authorId)
         {

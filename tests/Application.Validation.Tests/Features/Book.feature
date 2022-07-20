@@ -5,6 +5,7 @@ A short summary of the feature
 @AddBook
 Scenario: I want to add an book
 	Given I have an book to add
+	And there is an author with id 1
 	And his title is "Clean Arhictecture"
 	And his description is "Formation Clean Architecture"
 	And his author id is 1
