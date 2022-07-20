@@ -16,6 +16,7 @@ public static class DependencyInjection
             .UseSqlite(configuration.GetSection("Sqlite").Value));
         services.AddAutoMapper(assembly);
         services.AddScoped<IAuthorRepository, AuthorRepositoryImp>();
+        services.AddScoped<IBookRepository, BookRepositoryImp>();
 
         return services;
     }

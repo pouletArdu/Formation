@@ -18,9 +18,6 @@ public class GetOneAuthorQueryHandler : IRequestHandler<GetOneAuthorQuery, Autho
 
     public async Task<AuthorDTO> Handle(GetOneAuthorQuery request, CancellationToken cancellationToken)
     {
-        var validator = new GetOneAuthorQueryValidator();
-        validator.Validate(request);
-
         var author = await _repository.GetOneAuthorById(request.Id);
 
         var authorDto = _mapper.Map<AuthorDTO>(author);

@@ -101,7 +101,10 @@ namespace Application.Validation.Tests.StepDefinitions
         {
             _authorExpected = AuthorRepositoryMock.Authors.FirstOrDefault(a => a.Id == idAuthor);
             _authorExpected.Should().NotBeNull();
-            _authorResult = await Testing.SendAsync(new GetOneAuthorQuery(idAuthor));
+            _authorResult = await Testing.SendAsync(new GetOneAuthorQuery
+            {
+                Id = idAuthor,
+            });
             _authorResult.Id.Should().Be(idAuthor);
         }
 

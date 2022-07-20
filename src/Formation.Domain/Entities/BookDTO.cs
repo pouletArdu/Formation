@@ -16,7 +16,7 @@ namespace Formation.Domain.Entities
 
         public int AuthorId { get; set; }
 
-        public DateOnly PublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
 
         public int NumberOfPage { get; set; }
 
