@@ -10,7 +10,6 @@
     <Folder Include="Authors\Commands\Delete\" />
     <Folder Include="Authors\Commands\Update\" />
     <Folder Include="Books\Commands\Delete\" />
-    <Folder Include="Books\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

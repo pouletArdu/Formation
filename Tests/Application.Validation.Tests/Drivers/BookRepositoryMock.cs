@@ -18,9 +18,15 @@ namespace Application.Validation.Tests.Drivers
             Books.Clear();
         }
 
-        public static void AddAuthors(IEnumerable<BookDTO> books)
+        public static void AddBooks(IEnumerable<BookDTO> books)
         {
             Books.AddRange(books);
+        }
+
+        public async Task<BookDTO> Get(int id)
+        {
+            await Task.Yield();
+            return Books.First(x => x.Id == id);
         }
     }
 }

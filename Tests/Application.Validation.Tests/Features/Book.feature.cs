@@ -177,6 +177,95 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I Want to get Book by his ID")]
+        public virtual void IWantToGetBookByHisID()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I Want to get Book by his ID", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 25
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Id",
+                            "Title",
+                            "Description",
+                            "PublicationDate",
+                            "NumberOfPage",
+                            "AuthorId"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "Titi",
+                            "Titi",
+                            "1986/01/01",
+                            "10",
+                            "1"});
+                table2.AddRow(new string[] {
+                            "2",
+                            "Toto",
+                            "Toto",
+                            "1986/02/01",
+                            "9",
+                            "1"});
+                table2.AddRow(new string[] {
+                            "3",
+                            "Tata",
+                            "Tata",
+                            "1986/03/01",
+                            "8",
+                            "1"});
+                table2.AddRow(new string[] {
+                            "4",
+                            "Tutu",
+                            "Tutu",
+                            "1986/04/01",
+                            "7",
+                            "1"});
+                table2.AddRow(new string[] {
+                            "5",
+                            "Tete",
+                            "Tete",
+                            "1986/05/01",
+                            "6",
+                            "1"});
+                table2.AddRow(new string[] {
+                            "6",
+                            "Tyty",
+                            "Tyty",
+                            "1986/06/01",
+                            "5",
+                            "1"});
+#line 26
+testRunner.Given("there are books :", ((string)(null)), table2, "Given ");
+#line hidden
+#line 34
+testRunner.When("I ask to get the book with id 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
+testRunner.Then("I get the expected book", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

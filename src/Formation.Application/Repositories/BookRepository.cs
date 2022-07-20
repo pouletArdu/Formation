@@ -9,5 +9,7 @@ namespace Formation.Application.Repositories
     public interface BookRepository
     {
         Task<int> Add(BookDTO dto);
+
+        Task<BookDTO> Get(int id);
     }
 }

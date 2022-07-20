@@ -1,6 +1,8 @@
 using Application.Validation.Tests.Drivers;
 using Formation.Application.Books.Commands.Create;
+using Formation.Application.Books.Queries.GetOne;
 using Formation.Application.Common.Exceptions;
+using TechTalk.SpecFlow.Assist;
 
 namespace Application.Validation.Tests.StepDefinitions
 {
@@ -78,6 +80,28 @@ namespace Application.Validation.Tests.StepDefinitions
         public void GivenThereIsAnAuthorWithId(int id)
         {
             AuthorRepositoryMock.AddAuthors(new List<AuthorDTO> { new AuthorDTO { Id = id } });
+        }
+
+        [Given(@"there are books :")]
+        public void GivenThereAreBooks(Table table)
+        {
+            BookRepositoryMock.AddBooks(table.CreateSet<BookDTO>());
+        }
+
+        [When(@"I ask to get the book with id (.*)")]
+        public async Task WhenIAskToGetTheBookWithIdAsync(int bookID)
+        {
+            _bookExpected = BookRepositoryMock.Books.FirstOrDefault(a => a.Id == bookID);
+            _bookExpected.Should().NotBeNull();
+            _bookResult = await Testing.SendAsync(new GetOneBookQuery(bookID));
+        }
+
+        [Then(@"I get the expected book")]
+        public void ThenIGetTheExpectedBook()
+        {
+            _bookResult.Should().NotBeNull();
+            _bookResult.Title.Should().Be(_bookExpected.Title);
+            _bookResult.Author.Should().Be(_bookExpected.Author);
         }
 
     }

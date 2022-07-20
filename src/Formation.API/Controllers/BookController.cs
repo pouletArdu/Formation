@@ -1,4 +1,5 @@
 ﻿using Formation.Application.Books.Commands.Create;
+using Formation.Application.Books.Queries.GetOne;
 using Formation.Application.Common.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,12 @@ namespace Formation.API.Controllers
         public async Task<IActionResult> Add([FromBody] CreateBookCommand request)
         {
             return await Send(request);
+        }
+
+        [HttpGet("id")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return await Send(new GetOneBookQuery(id));
         }
 
         private async Task<IActionResult> Send<T>(IRequest<T> request)
