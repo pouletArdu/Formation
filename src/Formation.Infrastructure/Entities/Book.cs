@@ -8,7 +8,7 @@
 
         public AuthorDTO Author { get; set; }
 
-        public DateOnly PublicationDate { get; set; }
+        public DateTime PublicationDate { get; set; }
 
         public int NumberOfPage { get; set; }
     }

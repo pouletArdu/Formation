@@ -21,6 +21,7 @@ namespace Application.Validation.Tests
             services.AddLogging();
             services.AddApplication();
             services.AddScoped<AuthorRepository, AuthorRepositoryMock>();
+            services.AddScoped<BookRepository, BookRepositoryMock>();
             _scopeFactory = services.BuildServiceProvider().GetRequiredService<IServiceScopeFactory>();
         }
         public async static Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)

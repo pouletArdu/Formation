@@ -11,6 +11,7 @@ namespace Formation.Infrastructure
             .UseSqlite(configuration.GetSection("Sqlite").Value));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<AuthorRepository,AuthorRepositoryImp>();
+            services.AddScoped<BookRepository,BookRepositoryImp>();
 
             return services;
         }

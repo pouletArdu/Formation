@@ -1,5 +1,4 @@
-﻿using Formation.Application.Authors.Commands.Create;
-using Formation.Application.Authors.Queries.GetOne;
+﻿using Formation.Application.Books.Commands.Create;
 using Formation.Application.Common.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -8,44 +7,40 @@ namespace Formation.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorController : ControllerBase
+    public class BookController : ControllerBase
     {
         private ISender _mediator = null!;
 
-        public AuthorController(ISender mediator)
+        public BookController(ISender mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateAuthorCommand request)
+        public async Task<IActionResult> Add([FromBody] CreateBookCommand request)
         {
             return await Send(request);
         }
 
-        [HttpGet("id")]
-        public async Task<IActionResult> Get(int id)
-        {
-            return await Send(new GetOneAuthorQuery(id));
-        }
         private async Task<IActionResult> Send<T>(IRequest<T> request)
         {
             try
             {
                 return Ok(await _mediator.Send(request));
             }
-            catch(ValidationException ex)
+            catch (ValidationException ex)
             {
                 return BadRequest(ex.Errors.Select(x => x.Value));
             }
-            catch(NotFoundException ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
+            
     }
 }

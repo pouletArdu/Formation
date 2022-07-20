@@ -5,6 +5,7 @@
         public MappingProfile()
         {
             CreateMap<AuthorDTO, Author>().ReverseMap();
+            CreateMap<BookDTO, Book>().ReverseMap();
         }
     }
 }

@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Formation.Domain.Entities
+namespace Formation.Application.Books.Commands.Create
 {
-    public class BookDTO : BaseEntity
+    public class CreateBookCommand : IRequest<int>
     {
         public string Title { get; set; }
 
         public string Description { get; set; }
-
-        public AuthorDTO Author { get; set; }
 
         public DateTime PublicationDate { get; set; }
 
