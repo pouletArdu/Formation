@@ -14,6 +14,7 @@ public class BookRepositoryImp : IBookRepository
     public async Task<int> Add(BookDTO dto)
     {
         var entity = _mapper.Map<Book>(dto);
+        entity.Author = _context.Authors.FirstOrDefault(a => a.Id == dto.AuthorId);
 
         await _context.AddAsync(entity);
         await _context.SaveChangesAsync();

@@ -24,9 +24,6 @@
 
         public async Task<int> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateAuthorCommandValidator();
-            validator.Validate(request);
-
             var dto = _mapper.Map<AuthorDTO>(request);
             return await _repository.Add(dto);
         }

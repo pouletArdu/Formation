@@ -14,8 +14,6 @@ namespace Formation.Infrastructure.Entities
 
         public Author Author { get; set; }
 
-        public int AuthorId { get; set; }
-
         public DateTime PublicationDate { get; set; }
 
         public int NumberOfPage { get; set; }

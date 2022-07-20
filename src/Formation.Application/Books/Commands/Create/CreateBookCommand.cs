@@ -6,8 +6,6 @@
 
         public string Description { get; set; }
 
-        public AuthorDTO Author { get; set; }
-
         public int AuthorId { get; set; }
 
         public DateTime PublicationDate { get; set; }
@@ -28,9 +26,6 @@
 
         public async Task<int> Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateBookCommandValidator();
-            validator.Validate(request);
-
             var dto = _mapper.Map<BookDTO>(request);
             return await _repository.Add(dto);
         }
